@@ -1,0 +1,33 @@
+﻿  InputManager.cpp
+d:\unam\cga\projects\skyways2000\skyways2000\src\headers\inputmanager.h(107): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=glm::i32
+          ]
+d:\unam\cga\projects\skyways2000\skyways2000\src\headers\inputmanager.h(273): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+d:\unam\cga\projects\skyways2000\skyways2000\src\inputmanager.cpp(97): warning C4244: '=': conversion from 'float' to 'T', possible loss of data
+          with
+          [
+              T=glm::i32
+          ]
+d:\unam\cga\projects\skyways2000\skyways2000\src\inputmanager.cpp(98): warning C4244: '=': conversion from 'float' to 'T', possible loss of data
+          with
+          [
+              T=glm::i32
+          ]
+d:\unam\cga\projects\skyways2000\skyways2000\src\inputmanager.cpp(101): warning C4244: '=': conversion from 'float' to 'T', possible loss of data
+          with
+          [
+              T=glm::i32
+          ]
+d:\unam\cga\projects\skyways2000\skyways2000\src\inputmanager.cpp(102): warning C4244: '=': conversion from 'float' to 'T', possible loss of data
+          with
+          [
+              T=glm::i32
+          ]
+d:\unam\cga\projects\skyways2000\skyways2000\src\inputmanager.cpp(306): warning C4305: 'argument': truncation from 'double' to 'float'
+d:\unam\cga\projects\skyways2000\skyways2000\src\inputmanager.cpp(315): warning C4305: 'argument': truncation from 'double' to 'float'
+d:\unam\cga\projects\skyways2000\skyways2000\src\inputmanager.cpp(64): warning C4715: 'InputManager::toApplicationState': not all control paths return a value
+d:\unam\cga\projects\skyways2000\skyways2000\src\inputmanager.cpp(75): warning C4715: 'InputManager::toMouseButtonIndex': not all control paths return a value
+d:\unam\cga\projects\skyways2000\skyways2000\src\inputmanager.cpp(55): warning C4715: 'InputManager::toApplicationKey': not all control paths return a value
+  skyways2000.vcxproj -> D:\UNAM\CGA\Projects\skyways2000\Debug\skyways2000.exe

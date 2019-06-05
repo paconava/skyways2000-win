@@ -1,0 +1,204 @@
+﻿  CubemapTexture.cpp
+  InputManager.cpp
+d:\unam\cga\projects\skyways2000\skyways2000\src\headers\inputmanager.h(107): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=glm::i32
+          ]
+d:\unam\cga\projects\skyways2000\skyways2000\src\headers\inputmanager.h(273): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+d:\unam\cga\projects\skyways2000\skyways2000\src\inputmanager.cpp(97): warning C4244: '=': conversion from 'float' to 'T', possible loss of data
+          with
+          [
+              T=glm::i32
+          ]
+d:\unam\cga\projects\skyways2000\skyways2000\src\inputmanager.cpp(98): warning C4244: '=': conversion from 'float' to 'T', possible loss of data
+          with
+          [
+              T=glm::i32
+          ]
+d:\unam\cga\projects\skyways2000\skyways2000\src\inputmanager.cpp(101): warning C4244: '=': conversion from 'float' to 'T', possible loss of data
+          with
+          [
+              T=glm::i32
+          ]
+d:\unam\cga\projects\skyways2000\skyways2000\src\inputmanager.cpp(102): warning C4244: '=': conversion from 'float' to 'T', possible loss of data
+          with
+          [
+              T=glm::i32
+          ]
+d:\unam\cga\projects\skyways2000\skyways2000\src\inputmanager.cpp(306): warning C4305: 'argument': truncation from 'double' to 'float'
+d:\unam\cga\projects\skyways2000\skyways2000\src\inputmanager.cpp(315): warning C4305: 'argument': truncation from 'double' to 'float'
+  main.cpp
+d:\unam\cga\projects\skyways2000\skyways2000\src\headers\inputmanager.h(107): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=glm::i32
+          ]
+d:\unam\cga\projects\skyways2000\skyways2000\src\headers\inputmanager.h(273): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+d:\unam\cga\projects\skyways2000\skyways2000\src\main.cpp(620): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+d:\unam\cga\projects\skyways2000\skyways2000\src\main.cpp(625): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+d:\unam\cga\projects\skyways2000\skyways2000\src\main.cpp(632): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+d:\unam\cga\projects\skyways2000\skyways2000\src\main.cpp(631): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+d:\unam\cga\projects\skyways2000\skyways2000\src\main.cpp(642): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+d:\unam\cga\projects\skyways2000\skyways2000\src\main.cpp(643): warning C4244: '-=': conversion from 'double' to 'int', possible loss of data
+d:\unam\cga\projects\skyways2000\skyways2000\src\main.cpp(679): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+d:\unam\cga\projects\skyways2000\skyways2000\src\main.cpp(719): warning C4101: 'sbb1': unreferenced local variable
+d:\unam\cga\projects\skyways2000\skyways2000\src\main.cpp(693): warning C4101: 'aabb2': unreferenced local variable
+d:\unam\cga\projects\skyways2000\skyways2000\src\main.cpp(700): warning C4101: 'levelEnding': unreferenced local variable
+d:\unam\cga\projects\skyways2000\skyways2000\src\main.cpp(694): warning C4101: 'objType': unreferenced local variable
+d:\unam\cga\projects\skyways2000\skyways2000\src\main.cpp(723): warning C4101: 'ratio': unreferenced local variable
+d:\unam\cga\projects\skyways2000\skyways2000\src\main.cpp(719): warning C4101: 'sbb2': unreferenced local variable
+d:\unam\cga\projects\skyways2000\skyways2000\src\main.cpp(717): warning C4101: 'model1': unreferenced local variable
+d:\unam\cga\projects\skyways2000\skyways2000\src\main.cpp(750): warning C4101: 'nums': unreferenced local variable
+  Map.cpp
+d:\unam\cga\projects\skyways2000\skyways2000\src\map.cpp(122): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+d:\unam\cga\projects\skyways2000\skyways2000\src\map.cpp(192): warning C4305: '+=': truncation from 'double' to 'float'
+d:\unam\cga\projects\skyways2000\skyways2000\src\map.cpp(209): warning C4018: '<=': signed/unsigned mismatch
+d:\unam\cga\projects\skyways2000\skyways2000\src\map.cpp(238): warning C4244: '=': conversion from '_Ty' to 'int', possible loss of data
+          with
+          [
+              _Ty=float
+          ]
+d:\unam\cga\projects\skyways2000\skyways2000\src\map.cpp(907): warning C4101: 'lightPosLoc': unreferenced local variable
+  Mesh.cpp
+d:\unam\cga\projects\skyways2000\skyways2000\src\mesh.cpp(65): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+  Model.cpp
+  Shader.cpp
+  Sphere.cpp
+d:\unam\cga\projects\skyways2000\skyways2000\src\sphere.cpp(42): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+d:\unam\cga\projects\skyways2000\skyways2000\src\sphere.cpp(46): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+d:\unam\cga\projects\skyways2000\skyways2000\src\sphere.cpp(128): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+d:\unam\cga\projects\skyways2000\skyways2000\src\sphere.cpp(133): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+d:\unam\cga\projects\skyways2000\skyways2000\src\sphere.cpp(136): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+d:\unam\cga\projects\skyways2000\skyways2000\src\sphere.cpp(139): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+d:\unam\cga\projects\skyways2000\skyways2000\src\sphere.cpp(150): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+  Texture.cpp
+  TimeManager.cpp
+  Generating Code...
+d:\unam\cga\projects\skyways2000\skyways2000\src\inputmanager.cpp(75): warning C4715: 'InputManager::toMouseButtonIndex': not all control paths return a value
+d:\unam\cga\projects\skyways2000\skyways2000\src\inputmanager.cpp(64): warning C4715: 'InputManager::toApplicationState': not all control paths return a value
+d:\unam\cga\projects\skyways2000\skyways2000\src\inputmanager.cpp(55): warning C4715: 'InputManager::toApplicationKey': not all control paths return a value
+CubemapTexture.obj : error LNK2019: unresolved external symbol __imp_FreeImage_Unload referenced in function "public: bool __cdecl CubemapTexture::Load(void)" (?Load@CubemapTexture@@QEAA_NXZ)
+Texture.obj : error LNK2001: unresolved external symbol __imp_FreeImage_Unload
+CubemapTexture.obj : error LNK2019: unresolved external symbol __imp_FreeImage_Load referenced in function "public: bool __cdecl CubemapTexture::Load(void)" (?Load@CubemapTexture@@QEAA_NXZ)
+Texture.obj : error LNK2001: unresolved external symbol __imp_FreeImage_Load
+CubemapTexture.obj : error LNK2019: unresolved external symbol __imp_FreeImage_GetFIFFromFilename referenced in function "public: bool __cdecl CubemapTexture::Load(void)" (?Load@CubemapTexture@@QEAA_NXZ)
+Texture.obj : error LNK2001: unresolved external symbol __imp_FreeImage_GetFIFFromFilename
+CubemapTexture.obj : error LNK2019: unresolved external symbol __imp_FreeImage_FIFSupportsReading referenced in function "public: bool __cdecl CubemapTexture::Load(void)" (?Load@CubemapTexture@@QEAA_NXZ)
+Texture.obj : error LNK2001: unresolved external symbol __imp_FreeImage_FIFSupportsReading
+CubemapTexture.obj : error LNK2019: unresolved external symbol __imp_FreeImage_GetFileType referenced in function "public: bool __cdecl CubemapTexture::Load(void)" (?Load@CubemapTexture@@QEAA_NXZ)
+Texture.obj : error LNK2001: unresolved external symbol __imp_FreeImage_GetFileType
+CubemapTexture.obj : error LNK2019: unresolved external symbol __imp_FreeImage_GetBits referenced in function "public: bool __cdecl CubemapTexture::Load(void)" (?Load@CubemapTexture@@QEAA_NXZ)
+Texture.obj : error LNK2001: unresolved external symbol __imp_FreeImage_GetBits
+CubemapTexture.obj : error LNK2019: unresolved external symbol __imp_FreeImage_GetBPP referenced in function "public: bool __cdecl CubemapTexture::Load(void)" (?Load@CubemapTexture@@QEAA_NXZ)
+Texture.obj : error LNK2001: unresolved external symbol __imp_FreeImage_GetBPP
+CubemapTexture.obj : error LNK2019: unresolved external symbol __imp_FreeImage_GetWidth referenced in function "public: bool __cdecl CubemapTexture::Load(void)" (?Load@CubemapTexture@@QEAA_NXZ)
+Texture.obj : error LNK2001: unresolved external symbol __imp_FreeImage_GetWidth
+CubemapTexture.obj : error LNK2019: unresolved external symbol __imp_FreeImage_GetHeight referenced in function "public: bool __cdecl CubemapTexture::Load(void)" (?Load@CubemapTexture@@QEAA_NXZ)
+Texture.obj : error LNK2001: unresolved external symbol __imp_FreeImage_GetHeight
+CubemapTexture.obj : error LNK2019: unresolved external symbol __imp_FreeImage_ConvertTo32Bits referenced in function "public: bool __cdecl CubemapTexture::Load(void)" (?Load@CubemapTexture@@QEAA_NXZ)
+Texture.obj : error LNK2001: unresolved external symbol __imp_FreeImage_ConvertTo32Bits
+CubemapTexture.obj : error LNK2019: unresolved external symbol __imp_FreeImage_FlipVertical referenced in function "public: bool __cdecl CubemapTexture::Load(void)" (?Load@CubemapTexture@@QEAA_NXZ)
+Texture.obj : error LNK2001: unresolved external symbol __imp_FreeImage_FlipVertical
+CubemapTexture.obj : error LNK2001: unresolved external symbol __imp___glewActiveTexture
+Mesh.obj : error LNK2001: unresolved external symbol __imp___glewActiveTexture
+Texture.obj : error LNK2001: unresolved external symbol __imp___glewActiveTexture
+CubemapTexture.obj : error LNK2001: unresolved external symbol __imp___glewGenerateMipmap
+InputManager.obj : error LNK2019: unresolved external symbol glfwJoystickPresent referenced in function "public: void __cdecl InputManager::do_movement(float)" (?do_movement@InputManager@@QEAAXM@Z)
+InputManager.obj : error LNK2019: unresolved external symbol glfwGetJoystickAxes referenced in function "public: void __cdecl InputManager::do_movement(float)" (?do_movement@InputManager@@QEAAXM@Z)
+InputManager.obj : error LNK2019: unresolved external symbol glfwGetJoystickButtons referenced in function "public: void __cdecl InputManager::do_movement(float)" (?do_movement@InputManager@@QEAAXM@Z)
+main.obj : error LNK2019: unresolved external symbol __imp_glewInit referenced in function "void __cdecl init(int,int,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,bool)" (?init@@YAXHHV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@_N@Z)
+main.obj : error LNK2019: unresolved external symbol glfwInit referenced in function "void __cdecl init(int,int,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,bool)" (?init@@YAXHHV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@_N@Z)
+main.obj : error LNK2019: unresolved external symbol glfwTerminate referenced in function "void __cdecl destroyWindow(void)" (?destroyWindow@@YAXXZ)
+main.obj : error LNK2019: unresolved external symbol glfwGetPrimaryMonitor referenced in function "void __cdecl init(int,int,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,bool)" (?init@@YAXHHV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@_N@Z)
+main.obj : error LNK2019: unresolved external symbol glfwWindowHint referenced in function "void __cdecl init(int,int,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,bool)" (?init@@YAXHHV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@_N@Z)
+main.obj : error LNK2019: unresolved external symbol glfwCreateWindow referenced in function "void __cdecl init(int,int,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,bool)" (?init@@YAXHHV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@_N@Z)
+main.obj : error LNK2019: unresolved external symbol glfwDestroyWindow referenced in function "void __cdecl destroyWindow(void)" (?destroyWindow@@YAXXZ)
+main.obj : error LNK2019: unresolved external symbol glfwWindowShouldClose referenced in function "bool __cdecl processInput(bool)" (?processInput@@YA_N_N@Z)
+main.obj : error LNK2019: unresolved external symbol glfwSetWindowSizeCallback referenced in function "void __cdecl init(int,int,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,bool)" (?init@@YAXHHV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@_N@Z)
+main.obj : error LNK2019: unresolved external symbol glfwPollEvents referenced in function "bool __cdecl processInput(bool)" (?processInput@@YA_N_N@Z)
+main.obj : error LNK2019: unresolved external symbol glfwSetInputMode referenced in function "void __cdecl init(int,int,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,bool)" (?init@@YAXHHV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@_N@Z)
+main.obj : error LNK2019: unresolved external symbol glfwGetKey referenced in function "bool __cdecl processInput(bool)" (?processInput@@YA_N_N@Z)
+main.obj : error LNK2019: unresolved external symbol glfwGetCursorPos referenced in function "void __cdecl mouseButtonCallback(struct GLFWwindow *,int,int,int)" (?mouseButtonCallback@@YAXPEAUGLFWwindow@@HHH@Z)
+main.obj : error LNK2019: unresolved external symbol glfwSetKeyCallback referenced in function "void __cdecl init(int,int,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,bool)" (?init@@YAXHHV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@_N@Z)
+main.obj : error LNK2019: unresolved external symbol glfwSetMouseButtonCallback referenced in function "void __cdecl init(int,int,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,bool)" (?init@@YAXHHV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@_N@Z)
+main.obj : error LNK2019: unresolved external symbol glfwSetCursorPosCallback referenced in function "void __cdecl init(int,int,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,bool)" (?init@@YAXHHV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@_N@Z)
+main.obj : error LNK2019: unresolved external symbol glfwMakeContextCurrent referenced in function "void __cdecl init(int,int,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,bool)" (?init@@YAXHHV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@_N@Z)
+main.obj : error LNK2019: unresolved external symbol glfwSwapBuffers referenced in function "void __cdecl applicationLoop(void)" (?applicationLoop@@YAXXZ)
+main.obj : error LNK2019: unresolved external symbol glfwSwapInterval referenced in function "void __cdecl init(int,int,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,bool)" (?init@@YAXHHV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@_N@Z)
+main.obj : error LNK2019: unresolved external symbol __imp_alGetError referenced in function "void __cdecl init(int,int,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,bool)" (?init@@YAXHHV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@_N@Z)
+main.obj : error LNK2019: unresolved external symbol __imp_alListenerfv referenced in function "void __cdecl applicationLoop(void)" (?applicationLoop@@YAXXZ)
+main.obj : error LNK2019: unresolved external symbol __imp_alGenSources referenced in function "void __cdecl init(int,int,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,bool)" (?init@@YAXHHV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@_N@Z)
+main.obj : error LNK2019: unresolved external symbol __imp_alSourcef referenced in function "void __cdecl applicationLoop(void)" (?applicationLoop@@YAXXZ)
+main.obj : error LNK2019: unresolved external symbol __imp_alSourcefv referenced in function "void __cdecl applicationLoop(void)" (?applicationLoop@@YAXXZ)
+main.obj : error LNK2019: unresolved external symbol __imp_alSourcei referenced in function "void __cdecl init(int,int,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,bool)" (?init@@YAXHHV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@_N@Z)
+main.obj : error LNK2019: unresolved external symbol __imp_alSourcePlay referenced in function "void __cdecl applicationLoop(void)" (?applicationLoop@@YAXXZ)
+main.obj : error LNK2019: unresolved external symbol __imp_alSourceStop referenced in function "void __cdecl applicationLoop(void)" (?applicationLoop@@YAXXZ)
+main.obj : error LNK2019: unresolved external symbol __imp_alGenBuffers referenced in function "void __cdecl init(int,int,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,bool)" (?init@@YAXHHV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@_N@Z)
+main.obj : error LNK2019: unresolved external symbol __imp_alutInit referenced in function "void __cdecl init(int,int,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,bool)" (?init@@YAXHHV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@_N@Z)
+main.obj : error LNK2019: unresolved external symbol __imp_alutCreateBufferFromFile referenced in function "void __cdecl init(int,int,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,bool)" (?init@@YAXHHV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@_N@Z)
+main.obj : error LNK2001: unresolved external symbol __imp___glewBindBuffer
+Mesh.obj : error LNK2001: unresolved external symbol __imp___glewBindBuffer
+Sphere.obj : error LNK2001: unresolved external symbol __imp___glewBindBuffer
+main.obj : error LNK2001: unresolved external symbol __imp___glewBufferData
+Mesh.obj : error LNK2001: unresolved external symbol __imp___glewBufferData
+Sphere.obj : error LNK2001: unresolved external symbol __imp___glewBufferData
+main.obj : error LNK2001: unresolved external symbol __imp___glewBufferSubData
+main.obj : error LNK2001: unresolved external symbol __imp___glewGenBuffers
+Mesh.obj : error LNK2001: unresolved external symbol __imp___glewGenBuffers
+Sphere.obj : error LNK2001: unresolved external symbol __imp___glewGenBuffers
+main.obj : error LNK2001: unresolved external symbol __imp___glewEnableVertexAttribArray
+Mesh.obj : error LNK2001: unresolved external symbol __imp___glewEnableVertexAttribArray
+Sphere.obj : error LNK2001: unresolved external symbol __imp___glewEnableVertexAttribArray
+main.obj : error LNK2001: unresolved external symbol __imp___glewUniform1f
+Map.obj : error LNK2001: unresolved external symbol __imp___glewUniform1f
+main.obj : error LNK2001: unresolved external symbol __imp___glewUniform1i
+Map.obj : error LNK2001: unresolved external symbol __imp___glewUniform1i
+Mesh.obj : error LNK2001: unresolved external symbol __imp___glewUniform1i
+main.obj : error LNK2001: unresolved external symbol __imp___glewUniform3f
+Map.obj : error LNK2001: unresolved external symbol __imp___glewUniform3f
+main.obj : error LNK2001: unresolved external symbol __imp___glewUniformMatrix4fv
+Map.obj : error LNK2001: unresolved external symbol __imp___glewUniformMatrix4fv
+main.obj : error LNK2001: unresolved external symbol __imp___glewUseProgram
+Shader.obj : error LNK2001: unresolved external symbol __imp___glewUseProgram
+main.obj : error LNK2001: unresolved external symbol __imp___glewVertexAttribPointer
+Mesh.obj : error LNK2001: unresolved external symbol __imp___glewVertexAttribPointer
+Sphere.obj : error LNK2001: unresolved external symbol __imp___glewVertexAttribPointer
+main.obj : error LNK2001: unresolved external symbol __imp___glewBindVertexArray
+Mesh.obj : error LNK2001: unresolved external symbol __imp___glewBindVertexArray
+Sphere.obj : error LNK2001: unresolved external symbol __imp___glewBindVertexArray
+main.obj : error LNK2001: unresolved external symbol __imp___glewGenVertexArrays
+Mesh.obj : error LNK2001: unresolved external symbol __imp___glewGenVertexArrays
+Sphere.obj : error LNK2001: unresolved external symbol __imp___glewGenVertexArrays
+main.obj : error LNK2001: unresolved external symbol __imp_glewExperimental
+Mesh.obj : error LNK2001: unresolved external symbol __imp___glewDeleteBuffers
+Sphere.obj : error LNK2001: unresolved external symbol __imp___glewDeleteBuffers
+Mesh.obj : error LNK2001: unresolved external symbol __imp___glewDisableVertexAttribArray
+Sphere.obj : error LNK2001: unresolved external symbol __imp___glewDisableVertexAttribArray
+Mesh.obj : error LNK2001: unresolved external symbol __imp___glewDeleteVertexArrays
+Sphere.obj : error LNK2001: unresolved external symbol __imp___glewDeleteVertexArrays
+Model.obj : error LNK2019: unresolved external symbol "public: __cdecl Assimp::Importer::Importer(void)" (??0Importer@Assimp@@QEAA@XZ) referenced in function "public: void __cdecl Model::loadModel(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &)" (?loadModel@Model@@QEAAXAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z)
+Model.obj : error LNK2019: unresolved external symbol "public: __cdecl Assimp::Importer::~Importer(void)" (??1Importer@Assimp@@QEAA@XZ) referenced in function "public: void __cdecl Model::loadModel(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &)" (?loadModel@Model@@QEAAXAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z)
+Model.obj : error LNK2019: unresolved external symbol "public: struct aiScene const * __cdecl Assimp::Importer::ReadFile(char const *,unsigned int)" (?ReadFile@Importer@Assimp@@QEAAPEBUaiScene@@PEBDI@Z) referenced in function "public: void __cdecl Model::loadModel(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &)" (?loadModel@Model@@QEAAXAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z)
+Model.obj : error LNK2019: unresolved external symbol "public: char const * __cdecl Assimp::Importer::GetErrorString(void)const " (?GetErrorString@Importer@Assimp@@QEBAPEBDXZ) referenced in function "public: void __cdecl Model::loadModel(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &)" (?loadModel@Model@@QEAAXAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z)
+Model.obj : error LNK2019: unresolved external symbol aiGetMaterialTextureCount referenced in function "public: unsigned int __cdecl aiMaterial::GetTextureCount(enum aiTextureType)const " (?GetTextureCount@aiMaterial@@QEBAIW4aiTextureType@@@Z)
+Model.obj : error LNK2019: unresolved external symbol aiGetMaterialTexture referenced in function "public: enum aiReturn __cdecl aiMaterial::GetTexture(enum aiTextureType,unsigned int,struct aiString *,enum aiTextureMapping *,unsigned int *,float *,enum aiTextureOp *,enum aiTextureMapMode *)const " (?GetTexture@aiMaterial@@QEBA?AW4aiReturn@@W4aiTextureType@@IPEAUaiString@@PEAW4aiTextureMapping@@PEAIPEAMPEAW4aiTextureOp@@PEAW4aiTextureMapMode@@@Z)
+Shader.obj : error LNK2001: unresolved external symbol __imp___glewAttachShader
+Shader.obj : error LNK2001: unresolved external symbol __imp___glewCompileShader
+Shader.obj : error LNK2001: unresolved external symbol __imp___glewCreateProgram
+Shader.obj : error LNK2001: unresolved external symbol __imp___glewCreateShader
+Shader.obj : error LNK2001: unresolved external symbol __imp___glewDeleteProgram
+Shader.obj : error LNK2001: unresolved external symbol __imp___glewDeleteShader
+Shader.obj : error LNK2001: unresolved external symbol __imp___glewDetachShader
+Shader.obj : error LNK2001: unresolved external symbol __imp___glewGetShaderInfoLog
+Shader.obj : error LNK2001: unresolved external symbol __imp___glewGetShaderiv
+Shader.obj : error LNK2001: unresolved external symbol __imp___glewGetUniformLocation
+Shader.obj : error LNK2001: unresolved external symbol __imp___glewLinkProgram
+Shader.obj : error LNK2001: unresolved external symbol __imp___glewShaderSource
+..\..\external\glew\lib\glew32d.lib : warning LNK4272: library machine type 'x86' conflicts with target machine type 'x64'
+..\..\external\glfw\lib\glfw3.lib : warning LNK4272: library machine type 'x86' conflicts with target machine type 'x64'
+..\..\external\assimp\lib\assimp-vc140-mt.lib : warning LNK4272: library machine type 'x86' conflicts with target machine type 'x64'
+..\..\external\FreeImage\lib\FreeImaged.lib : warning LNK4272: library machine type 'x86' conflicts with target machine type 'x64'
+..\..\external\freealut\lib\alut.lib : warning LNK4272: library machine type 'x86' conflicts with target machine type 'x64'
+..\..\external\OpenAL\lib\OpenAL32.lib : warning LNK4272: library machine type 'x86' conflicts with target machine type 'x64'
+D:\UNAM\CGA\Projects\skyways2000\x64\Debug\skyways2000.exe : fatal error LNK1120: 81 unresolved externals
