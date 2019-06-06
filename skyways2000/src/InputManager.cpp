@@ -494,7 +494,8 @@ void InputManager::do_movement(float deltaTime) {
 	case CREDITS:
 		stutter = 0.0f;
 		timer = 0.0f;
-		startButton(EXIT);
+		if (keyState[InputCodes::q])
+			gameState = EXIT;
 		break;
 	case EXIT:
 		exit(0);
