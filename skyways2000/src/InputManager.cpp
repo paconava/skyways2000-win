@@ -262,6 +262,16 @@ void InputManager::do_movement(float deltaTime) {
 					valBreak = (axes[4] + 1) / 2;
 				}
 
+				if (axes[2] > 0) 
+					angleAroundPlayer = changeVals(angleAroundPlayer, axes[2] * cameraSpeed, 60.0f, true);
+				else if (axes[2] < 0)
+					angleAroundPlayer = changeVals(angleAroundPlayer, -axes[2] * cameraSpeed, -60.0f, false);
+				else
+					if (angleAroundPlayer > 0)
+						angleAroundPlayer = changeVals(angleAroundPlayer, 2.0f * cameraSpeed, 0.0f, false);
+					else if (angleAroundPlayer < 0)
+						angleAroundPlayer = changeVals(angleAroundPlayer, 2.0f * cameraSpeed, 0.0f, true);
+
 				if (GLFW_PRESS == buttons[0])
 					if (initJump) {
 						jumpSound = true;
@@ -461,10 +471,12 @@ void InputManager::do_movement(float deltaTime) {
 		break;
 	case TRANSITIONSCREEN:
 		gameState = MAINGAME;
+
 		stutter = 0.0f;
 		timer = 0.0f;
 		break;
 	case STARTMENU:
+
 		startButton(MAINGAME);
 		stutter = 0.0f;
 		timer = 0.0f;
