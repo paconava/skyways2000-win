@@ -313,6 +313,7 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
     buffer[3] = alutCreateBufferFromFile("../sounds/gas.wav");
     buffer[4] = alutCreateBufferFromFile("../sounds/coin.wav");
     buffer[5] = alutCreateBufferFromFile("../sounds/explosion.wav");
+	buffer[6] = alutCreateBufferFromFile("../sounds/powerup.wav");
 
     alGetError(); /* clear error */
     alGenSources(NUM_SOURCES, source);
@@ -371,6 +372,14 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
     alSourcei(source[5], AL_BUFFER, buffer[5]);
     alSourcei(source[5], AL_LOOPING, AL_FALSE);
     alSourcef(source[5], AL_MAX_DISTANCE, 1200);
+
+	alSourcef(source[6], AL_PITCH, 1.0f);
+	alSourcef(source[6], AL_GAIN, 0.5f);
+	alSourcefv(source[6], AL_POSITION, source0Pos);
+	alSourcefv(source[6], AL_VELOCITY, source0Vel);
+	alSourcei(source[6], AL_BUFFER, buffer[6]);
+	alSourcei(source[6], AL_LOOPING, AL_FALSE);
+	alSourcef(source[6], AL_MAX_DISTANCE, 1200);
 
     VertexTexture vertices[36] = {
         // Back face
@@ -635,7 +644,6 @@ void mouseButtonCallback(GLFWwindow* window, int button, int state, int mod) {
 void drawNumbers(int puntos, GLint modelLoc, glm::vec3 origin, glm::vec3 scale) {
     int digit;
 
-
     glm::mat4 digitModel = glm::translate(glm::mat4(1.0f), origin);
     digitModel = glm::scale(digitModel, scale);
     for (int i = 0; i < 3; i++) {
@@ -649,23 +657,20 @@ void drawNumbers(int puntos, GLint modelLoc, glm::vec3 origin, glm::vec3 scale) 
 }
 
 void drawLives(int lives, GLint modelLoc) {
-    glm::mat4 vidas = glm::translate(glm::mat4(1.0f), glm::vec3(screenWidth * 0.85f, screenHeight * 0.05f, 0.0f));
+    glm::mat4 vidas = glm::translate(glm::mat4(1.0f), glm::vec3(screenWidth * 0.83f, screenHeight * 0.05f, 0.0f));
     vidas = glm::scale(vidas, glm::vec3(screenHeight * 0.18f, screenHeight * 0.05f, 1.0f));
     textureVidas->bind(GL_TEXTURE0);
     glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(vidas));
     glDrawArrays(GL_TRIANGLES, 0, 6);
-    glm::mat4 lifeModel = glm::translate(glm::mat4(1.0f), glm::vec3(screenWidth * 0.9f, screenHeight * 0.05f, 0.0f));
+    glm::mat4 lifeModel = glm::translate(glm::mat4(1.0f), glm::vec3(screenWidth * 0.88f, screenHeight * 0.05f, 0.0f));
     lifeModel = glm::scale(lifeModel, glm::vec3(screenHeight * 0.05f, screenHeight * 0.05f, 1.0f));
     textureLife->bind(GL_TEXTURE0);
     for (int i = 0; i < lives; i++) {
-
         lifeModel = glm::translate(lifeModel, glm::vec3(1.0f, 0.0f, 0.0f));
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(lifeModel));
         glDrawArrays(GL_TRIANGLES, 0, 6);
     }
 }
-
-int m_timer = 0;
 
 bool processInput(bool continueApplication) {
     if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS
@@ -678,7 +683,6 @@ bool processInput(bool continueApplication) {
         this_thread::sleep_for(chrono::milliseconds((int) ((1000.0f / 61.0f) - deltaTime)));
     inputManager.do_movement(deltaTime);
     glfwPollEvents();
-    m_timer++;
     return continueApplication;
 }
 
@@ -919,37 +923,36 @@ void applicationLoop() {
                 //// Pass the matrices to the shader
                 glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
                 glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(projection));
-                //// Draw a sphere
-                offsetH = inputManager.getCarSpeed() * 2.0f;
+
+				offsetH = inputManager.getCarSpeed() * 2.0f;
+				offsetx += offsetH * sin(glm::radians(inputManager.roty));
+				offsetz += offsetH * cos(glm::radians(inputManager.roty));
+				if (inputManager.getCarY() < 0.0f && !inputManager.getFallToDeath())
+					inputManager.setCarY(0.0f);
                 model = glm::translate(glm::mat4(1.0f), glm::vec3(offsetx, inputManager.getCarY(), offsetz));
                 model = glm::rotate(model, glm::radians(inputManager.roty), glm::vec3(0.0f, 1.0f, 0.0f));
-                model = glm::translate(model, glm::vec3(0.0f, 0.0f, offsetH));
-
-                //model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+                // model = glm::translate(model, glm::vec3(0.0f, 0.0f, offsetH));
                 model = glm::rotate(model, glm::radians(inputManager.getCarAngle()), glm::vec3(0.0f, 1.0f, 0.0f));
                 model = glm::scale(model, glm::vec3(0.3, 0.3, 0.3));
 
                 glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 
-                offsetz += offsetH * cos(glm::radians(inputManager.roty));
-                offsetx += offsetH * sin(glm::radians(inputManager.roty));
-                if (inputManager.getCarY() < 0.0f && !inputManager.getFallToDeath())
-                    inputManager.setCarY(0.0f);
+				if (!inputManager.getExploding())
+					modelo1.render(&lightingShader);
 
-                glUniform1i(matDiffuseLoc, 0);
+				aabb1.min = glm::vec3(-0.2f + offsetx, 0.0f + inputManager.getCarY(), -0.2f + offsetz);
+				aabb1.max = glm::vec3(0.2f + offsetx, 0.2f + inputManager.getCarY(), 0.2f + offsetz);
+
+				inputManager.camera_look_at = glm::vec4(glm::rotate(model, glm::radians(inputManager.roty), glm::vec3(0.0f, 1.0f, 0.0f)) * glm::vec4(0.0f, 0.0f, 0.0f, 1.0f));
+
+				glUniform1i(matDiffuseLoc, 0);
                 glUniform1i(matSpecularLoc, 1);
                 glUniform1f(matShineLoc, 32.0f);
 
-                inputManager.camera_look_at = glm::vec4(glm::rotate(model, glm::radians(inputManager.roty), glm::vec3(0.0f, 1.0f, 0.0f)) * glm::vec4(0.0f, 0.0f, 0.0f, 1.0f));
                 explosionModel = model;
                 explosionView = view;
                 explosionProjection = projection;
-                if (!inputManager.getExploding())
-                    modelo1.render(&lightingShader);
-
-                aabb1.min = glm::vec3(-0.2f + offsetx, 0.0f + inputManager.getCarY(), -0.2f + offsetz);
-                aabb1.max = glm::vec3(0.2f + offsetx, 0.2f + inputManager.getCarY(), 0.2f + offsetz);
-
+                
 
                 lightingShader.turnOff();
 
@@ -1009,11 +1012,16 @@ void applicationLoop() {
                                 maps[inputManager.mapLoaded]->coinVector[i].notTaken) {
                             maps[inputManager.mapLoaded]->coinVector[i].notTaken = false;
                             score++;
-                            source0Pos[0] = maps[inputManager.mapLoaded]->coinVector[i].coinBB.center.x;
-                            source0Pos[1] = maps[inputManager.mapLoaded]->coinVector[i].coinBB.center.y;
-                            source0Pos[2] = maps[inputManager.mapLoaded]->coinVector[i].coinBB.center.z;
-                            alSourcefv(source[4], AL_POSITION, source0Pos);
-                            alSourcePlay(source[4]);
+							source0Pos[0] = maps[inputManager.mapLoaded]->coinVector[i].coinBB.center.x;
+							source0Pos[1] = maps[inputManager.mapLoaded]->coinVector[i].coinBB.center.y;
+							source0Pos[2] = maps[inputManager.mapLoaded]->coinVector[i].coinBB.center.z;
+							if (score % 50 == 0) {
+								remainingLives++;
+								alSourcefv(source[6], AL_POSITION, source0Pos);
+								alSourcePlay(source[6]);
+							}
+							alSourcefv(source[4], AL_POSITION, source0Pos);
+							alSourcePlay(source[4]);
                         }
                     }
                 }
@@ -1522,7 +1530,7 @@ void applicationLoop() {
 }
 
 int main(int argc, char ** argv) {
-    init(1200, 800, "Skyways", false);
+    init(1200, 800, "Skyways 2000", false);
     applicationLoop();
     destroy();
     return 1;
