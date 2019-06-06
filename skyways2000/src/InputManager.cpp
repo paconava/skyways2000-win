@@ -191,15 +191,31 @@ void InputManager::do_movement(float deltaTime) {
                     timeExploding = timer - explodingBuffer;
                     //std::cout << timeExploding << std::endl;
                 } else {
-                    if (keyState[Enter] && stutter > 0.5f) {
-                        paused = !paused;
-                        carSpeed = carSpeedBuffer;
-                        timeBuffer = timer;
-                        stutter = 0.0f;
-                    } else {
-                        carSpeed = 0.0f;
-                        stutter = timer - timeBuffer;
-                    }
+					if (glfwJoystickPresent(GLFW_JOYSTICK_1)) {
+						buttons = glfwGetJoystickButtons(GLFW_JOYSTICK_1, &buttonCount);
+						if (GLFW_PRESS == buttons[7] && stutter > 0.5f) {
+							paused = !paused;
+							carSpeed = carSpeedBuffer;
+							timeBuffer = timer;
+							stutter = 0.0f;
+						}
+						else {
+							carSpeed = 0.0f;
+							stutter = timer - timeBuffer;
+						}
+					}
+					else {
+						if (keyState[Enter] && stutter > 0.5f) {
+							paused = !paused;
+							carSpeed = carSpeedBuffer;
+							timeBuffer = timer;
+							stutter = 0.0f;
+						}
+						else {
+							carSpeed = 0.0f;
+							stutter = timer - timeBuffer;
+						}
+					}
 
                     if (timer > 5.0f) {
                         startCount = false;
@@ -389,6 +405,19 @@ void InputManager::do_movement(float deltaTime) {
                         else if (carSpeed < 0)
                             carSpeed = changeVals(carSpeed, 0.01f, 0.0f, 1);
                 }
+
+				if (glfwJoystickPresent(GLFW_JOYSTICK_1)) {
+					buttons = glfwGetJoystickButtons(GLFW_JOYSTICK_1, &buttonCount);
+					if (GLFW_PRESS == buttons[7] && stutter > 0.5f) {
+						paused = !paused;
+						carSpeedBuffer = carSpeed;
+						timeBuffer = timer;
+						stutter = 0.0f;
+					}
+					else {
+						stutter = timer - timeBuffer;
+					}
+				}
 
                 if (keyState[Enter] && stutter > 0.5f) {
                     paused = !paused;
