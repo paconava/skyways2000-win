@@ -186,6 +186,119 @@ bool Map::load(float factor, int level) {
     return true;
 }
 
+bool Map::draw(GLint modelLoc, float factor, Shader * sd) {
+	GLint lightPosLoc;
+	SBB fallSpace;
+	selector = sd->getUniformLocation("selector");
+	glUniform1i(selector, 0);
+	glUniform1f(sd->getUniformLocation("light.cutOff"), glm::cos(glm::radians(60.5f)));
+	glUniform1f(sd->getUniformLocation("light.outerCutOff"), glm::cos(glm::radians(90.5f)));
+	glUniform3f(sd->getUniformLocation("light.direction"), 0.0, -1.0, 0.0);
+	glUniform3f(sd->getUniformLocation("light.ambient"), 0.8f, 0.8f, 0.8f);
+	glUniform3f(sd->getUniformLocation("light.diffuse"), 1.0f, 0.2f, 0.4f);
+	glUniform3f(sd->getUniformLocation("light.specular"), 0.1f, 0.1f, 0.1f);
+	for (unsigned int i = 0; i <= mapData.size() - 7; i += 7) {
+		glm::mat4 pista = glm::translate(glm::mat4(1.0f), glm::vec3(factor * mapData[i + 1], -0.5f + mapData[i + 2], factor * mapData[i + 3]));
+		switch (static_cast<int> (mapData[i])) {
+		case 0:
+			// Bind Texture
+			texture0->bind(GL_TEXTURE0);
+			glUniform1i(sd->getUniformLocation("texture0"), 0);
+
+			pista = glm::rotate(pista, glm::radians(mapData[i + 4]), glm::vec3(0.0f, 1.0f, 0.0f));
+			pista = glm::scale(pista, glm::vec3(factor, 1.0f, factor * 2.0f));
+			break;
+		case 1:
+			texture1->bind(GL_TEXTURE0);
+			glUniform1i(sd->getUniformLocation("texture0"), 0);
+			glUniform1i(sd->getUniformLocation("texture0"), 0);
+			pista = glm::rotate(pista, glm::radians(mapData[i + 4]), glm::vec3(0.0f, 1.0f, 0.0f));
+			pista = glm::scale(pista, glm::vec3(factor * 2.0f, 1.0f, factor * 2.0f));
+			if (mapData[i + 4] == 0.0f)
+				fallSpace.center = glm::vec3(factor * mapData[i + 1] + factor, -0.5f + mapData[i + 2], factor * mapData[i + 3] - factor);
+			else if (mapData[i + 4] == 90.0f)
+				fallSpace.center = glm::vec3(factor * mapData[i + 1] - factor, -0.5f + mapData[i + 2], factor * mapData[i + 3] - factor);
+			else if (mapData[i + 4] == 180.0f)
+				fallSpace.center = glm::vec3(factor * mapData[i + 1] - factor, -0.5f + mapData[i + 2], factor * mapData[i + 3] + factor);
+			else if (mapData[i + 4] == 270.0f)
+				fallSpace.center = glm::vec3(factor * mapData[i + 1] + factor, -0.5f + mapData[i + 2], factor * mapData[i + 3] + factor);
+			fallSpace.ratio = factor;
+			if (numFallSpaces > falls.size())
+				falls.push_back(fallSpace);
+			break;
+		case 2:
+			pista = glm::rotate(pista, glm::radians(mapData[i + 4]), glm::vec3(0.0f, 1.0f, 0.0f));
+			pista = glm::scale(pista, glm::vec3(factor * 3.0f, 1.0f, factor * 3.0f));
+			if (mapData[i + 4] == 0.0f)
+				fallSpace.center = glm::vec3(factor * mapData[i + 1] + (factor * 1.5f), -0.5f + mapData[i + 2], factor * mapData[i + 3] - (factor * 1.5f));
+			else if (mapData[i + 4] == 90.0f)
+				fallSpace.center = glm::vec3(factor * mapData[i + 1] - (factor * 1.5f), -0.5f + mapData[i + 2], factor * mapData[i + 3] - (factor * 1.5f));
+			else if (mapData[i + 4] == 180.0f)
+				fallSpace.center = glm::vec3(factor * mapData[i + 1] - (factor * 1.5f), -0.5f + mapData[i + 2], factor * mapData[i + 3] + (factor * 1.5f));
+			else if (mapData[i + 4] == 270.0f)
+				fallSpace.center = glm::vec3(factor * mapData[i + 1] + (factor * 1.5f), -0.5f + mapData[i + 2], factor * mapData[i + 3] + (factor * 1.5f));
+			fallSpace.ratio = factor * 2.0f;
+			if (numFallSpaces > falls.size())
+				falls.push_back(fallSpace);
+			texture2->bind(GL_TEXTURE0);
+			glUniform1i(sd->getUniformLocation("texture0"), 0);
+			break;
+		case 3:
+			pista = glm::rotate(pista, glm::radians(mapData[i + 4]), glm::vec3(0.0f, 1.0f, 0.0f));
+			pista = glm::scale(pista, glm::vec3(factor * 2.0f, 1.0f, factor * 3.0f));
+			texture3->bind(GL_TEXTURE0);
+			glUniform1i(sd->getUniformLocation("texture0"), 0);
+			break;
+		case 4:
+			pista = glm::rotate(pista, glm::radians(mapData[i + 4]), glm::vec3(0.0f, 1.0f, 0.0f));
+			pista = glm::scale(pista, glm::vec3(factor * 2.0f, 1.0f, factor * 3.0f));
+			texture4->bind(GL_TEXTURE0);
+			glUniform1i(sd->getUniformLocation("texture0"), 0);
+			break;
+		default:
+			break;
+		}
+
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		glUniform3f(sd->getUniformLocation("light.position"), mapData[i + 1] * factor, 2.0f, mapData[i + 3] * factor);
+		glUniform1i(selector, 0);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(pista));
+		glDrawArrays(GL_TRIANGLES, 30, 6);
+		glDisable(GL_BLEND);
+	}
+
+	texture5->bind(GL_TEXTURE0);
+	glUniform1i(sd->getUniformLocation("texture0"), 0);
+	glm::mat4 grass = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, -0.1f, 0.0f));
+	grass = glm::scale(grass, glm::vec3(10000.f, 0.0f, 10000.f));
+	glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(grass));
+	glDrawArrays(GL_TRIANGLES, 30, 6);
+	glUniform1i(selector, 1);
+	brickWall->bind(GL_TEXTURE0);
+
+	glm::mat4 salida = glm::scale(glm::mat4(1.0f), glm::vec3(factor, 10.0f, factor));
+	salida = glm::translate(salida, glm::vec3(-1.0f, 0.0f, -1.5f));
+	glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(salida));
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+
+	salida = glm::translate(salida, glm::vec3(1.0f, 0.0f, 0.0f));
+	glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(salida));
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+
+	salida = glm::translate(salida, glm::vec3(1.0f, 0.0f, 0.0f));
+	glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(salida));
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+
+	coinTexture->bind(GL_TEXTURE0);
+	glm::mat4 meta = glm::translate(glm::mat4(1.0f), glm::vec3(endData[0] * factor, 0.0f, endData[2] * factor));
+	meta = glm::scale(meta, glm::vec3(factor * 3.0f, factor, factor * 3.0f));
+	glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(meta));
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	glUniform1i(selector, 0);
+	return true;
+}
+
 void Map::drawInteractive(GLint modelLoc, float factor, Shader * sd) {
     selector = sd->getUniformLocation("selector");
     changerLoc = sd->getUniformLocation("changer");
@@ -898,136 +1011,5 @@ void Map::drawInteractive(GLint modelLoc, float factor, Shader * sd) {
         }
         
         glUniform1i(selector, 0);
-        
-        //glUniform1i(selector, static_cast<int> (mapData[i]));
     }
-}
-
-bool Map::draw(GLint modelLoc, float factor, Shader * sd) {
-    GLint lightPosLoc;
-    SBB fallSpace;
-    selector = sd->getUniformLocation("selector");
-    glUniform1i(selector, 0);
-    glUniform1f(sd->getUniformLocation("light.cutOff"), glm::cos(glm::radians(60.5f)));
-    glUniform1f(sd->getUniformLocation("light.outerCutOff"), glm::cos(glm::radians(90.5f)));
-    glUniform3f(sd->getUniformLocation("light.direction"), 0.0, -1.0, 0.0);
-    glUniform3f(sd->getUniformLocation("light.ambient"), 0.8f, 0.8f, 0.8f);
-    glUniform3f(sd->getUniformLocation("light.diffuse"), 1.0f, 0.2f, 0.4f);
-    glUniform3f(sd->getUniformLocation("light.specular"), 0.1f, 0.1f, 0.1f);
-    for (unsigned int i = 0; i <= mapData.size() - 7; i += 7) {
-        glm::mat4 pista = glm::translate(glm::mat4(1.0f), glm::vec3(factor * mapData[i + 1], -0.5f + mapData[i + 2], factor * mapData[i + 3]));
-        switch (static_cast<int> (mapData[i])) {
-            case 0:
-                // Bind Texture
-                texture0->bind(GL_TEXTURE0);
-                glUniform1i(sd->getUniformLocation("texture0"), 0);
-                
-                pista = glm::rotate(pista, glm::radians(mapData[i + 4]), glm::vec3(0.0f, 1.0f, 0.0f));
-                pista = glm::scale(pista, glm::vec3(factor, 1.0f, factor * 2.0f));
-                break;
-            case 1:
-                texture1->bind(GL_TEXTURE0);
-                glUniform1i(sd->getUniformLocation("texture0"), 0);
-                glUniform1i(sd->getUniformLocation("texture0"), 0);
-                pista = glm::rotate(pista, glm::radians(mapData[i + 4]), glm::vec3(0.0f, 1.0f, 0.0f));
-                pista = glm::scale(pista, glm::vec3(factor * 2.0f, 1.0f, factor * 2.0f));
-                if (mapData[i + 4] == 0.0f)
-                    fallSpace.center = glm::vec3(factor * mapData[i + 1] + factor, -0.5f + mapData[i + 2], factor * mapData[i + 3] - factor);
-                else if (mapData[i + 4] == 90.0f)
-                    fallSpace.center = glm::vec3(factor * mapData[i + 1] - factor, -0.5f + mapData[i + 2], factor * mapData[i + 3] - factor);
-                else if (mapData[i + 4] == 180.0f)
-                    fallSpace.center = glm::vec3(factor * mapData[i + 1] - factor, -0.5f + mapData[i + 2], factor * mapData[i + 3] + factor);
-                else if (mapData[i + 4] == 270.0f)
-                    fallSpace.center = glm::vec3(factor * mapData[i + 1] + factor, -0.5f + mapData[i + 2], factor * mapData[i + 3] + factor);
-                fallSpace.ratio = factor;
-                if (numFallSpaces > falls.size())
-                    falls.push_back(fallSpace);
-                break;
-            case 2:
-                pista = glm::rotate(pista, glm::radians(mapData[i + 4]), glm::vec3(0.0f, 1.0f, 0.0f));
-                pista = glm::scale(pista, glm::vec3(factor * 3.0f, 1.0f, factor * 3.0f));
-                if (mapData[i + 4] == 0.0f)
-                    fallSpace.center = glm::vec3(factor * mapData[i + 1] + (factor * 1.5f), -0.5f + mapData[i + 2], factor * mapData[i + 3] - (factor * 1.5f));
-                else if (mapData[i + 4] == 90.0f)
-                    fallSpace.center = glm::vec3(factor * mapData[i + 1] - (factor * 1.5f), -0.5f + mapData[i + 2], factor * mapData[i + 3] - (factor * 1.5f));
-                else if (mapData[i + 4] == 180.0f)
-                    fallSpace.center = glm::vec3(factor * mapData[i + 1] - (factor * 1.5f), -0.5f + mapData[i + 2], factor * mapData[i + 3] + (factor * 1.5f));
-                else if (mapData[i + 4] == 270.0f)
-                    fallSpace.center = glm::vec3(factor * mapData[i + 1] + (factor * 1.5f), -0.5f + mapData[i + 2], factor * mapData[i + 3] + (factor * 1.5f));
-                fallSpace.ratio = factor * 2.0f;
-                if (numFallSpaces > falls.size())
-                    falls.push_back(fallSpace);
-                texture2->bind(GL_TEXTURE0);
-                glUniform1i(sd->getUniformLocation("texture0"), 0);
-                break;
-            case 3:
-                pista = glm::rotate(pista, glm::radians(mapData[i + 4]), glm::vec3(0.0f, 1.0f, 0.0f));
-                pista = glm::scale(pista, glm::vec3(factor * 2.0f, 1.0f, factor * 3.0f));
-                texture3->bind(GL_TEXTURE0);
-                glUniform1i(sd->getUniformLocation("texture0"), 0);
-                break;
-            case 4:
-                pista = glm::rotate(pista, glm::radians(mapData[i + 4]), glm::vec3(0.0f, 1.0f, 0.0f));
-                pista = glm::scale(pista, glm::vec3(factor * 2.0f, 1.0f, factor * 3.0f));
-                texture4->bind(GL_TEXTURE0);
-                glUniform1i(sd->getUniformLocation("texture0"), 0);
-                break;
-            default:
-                break;
-        }
-
-        // Bind Texture
-//        texture0->bind(GL_TEXTURE0);
-//        glUniform1i(sd->getUniformLocation("texture0"), 0);
-//        texture1->bind(GL_TEXTURE1);
-//        glUniform1i(sd->getUniformLocation("texture1"), 1);
-//        texture2->bind(GL_TEXTURE2);
-//        glUniform1i(sd->getUniformLocation("texture2"), 2);
-//        texture3->bind(GL_TEXTURE3);
-//        glUniform1i(sd->getUniformLocation("texture3"), 3);
-//        texture4->bind(GL_TEXTURE4);
-//        glUniform1i(sd->getUniformLocation("texture4"), 4);
-//        texture5->bind(GL_TEXTURE5);
-//        glUniform1i(sd->getUniformLocation("texture5"), 5);
-//        texture6->bind(GL_TEXTURE6);
-//        glUniform1i(sd->getUniformLocation("texture6"), 6);
-        glEnable(GL_BLEND);
-        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);  
-        glUniform3f(sd->getUniformLocation("light.position"), mapData[i + 1] * factor, 2.0f, mapData[i + 3] * factor);
-        glUniform1i(selector, 0);
-        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(pista));
-        glDrawArrays(GL_TRIANGLES, 30, 6);
-        glDisable(GL_BLEND);
-    }
-    
-    texture5->bind(GL_TEXTURE0);
-    glUniform1i(sd->getUniformLocation("texture0"), 0);
-    glm::mat4 grass = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, -0.1f, 0.0f));
-    grass = glm::scale(grass, glm::vec3(10000.f, 0.0f, 10000.f));
-    glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(grass));
-    glDrawArrays(GL_TRIANGLES, 30, 6);
-    glUniform1i(selector, 1);
-    brickWall->bind(GL_TEXTURE0);
-    
-    glm::mat4 salida = glm::scale(glm::mat4(1.0f), glm::vec3(factor, 10.0f, factor));
-    salida = glm::translate(salida, glm::vec3(-1.0f, 0.0f, -1.5f));
-    glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(salida));
-    glDrawArrays(GL_TRIANGLES, 0, 36);
-    
-    salida = glm::translate(salida, glm::vec3(1.0f, 0.0f, 0.0f));
-    glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(salida));
-    glDrawArrays(GL_TRIANGLES, 0, 36);
-    
-    salida = glm::translate(salida, glm::vec3(1.0f, 0.0f, 0.0f));
-    glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(salida));
-    glDrawArrays(GL_TRIANGLES, 0, 36);
-    
-    coinTexture->bind(GL_TEXTURE0);
-    glm::mat4 meta = glm::translate(glm::mat4(1.0f), glm::vec3(endData[0] * factor, 0.0f, endData[2] * factor));
-    meta = glm::scale(meta, glm::vec3(factor * 3.0f, factor, factor * 3.0f));
-    glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(meta));
-    glDrawArrays(GL_TRIANGLES, 0, 36);
-    glUniform1i(selector, 0);
-    return true;
-
 }
