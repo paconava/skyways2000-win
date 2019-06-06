@@ -108,6 +108,21 @@ void InputManager::mouseClicked(MouseButtonIndex code, float mouseX,
 	}
 }
 
+void InputManager::startButton(int screen) {
+	if (glfwJoystickPresent(GLFW_JOYSTICK_1)) {
+		int axesCount;
+		int buttonCount;
+		const float *axes = glfwGetJoystickAxes(GLFW_JOYSTICK_1, &axesCount);;
+		const unsigned char *buttons = glfwGetJoystickButtons(GLFW_JOYSTICK_1, &buttonCount);
+		if (GLFW_PRESS == buttons[7])
+			gameState = screen;
+	}
+	else {
+		if (keyState[Enter])
+			gameState = screen;
+	}
+}
+
 void InputManager::mouseScroll(float yoffset) {
 	scrollYoffset = yoffset;
 }
@@ -177,17 +192,9 @@ void InputManager::do_movement(float deltaTime) {
 	switch (gameState) {
 	case SPLASHSCREEN:
 		stutter = 0.0f;
-		if (glfwJoystickPresent(GLFW_JOYSTICK_1)) {
-			axes = glfwGetJoystickAxes(GLFW_JOYSTICK_1, &axesCount);
-			buttons = glfwGetJoystickButtons(GLFW_JOYSTICK_1, &buttonCount);
-			if (GLFW_PRESS == buttons[7])
-				gameState = TRANSITIONSCREEN;
-		}
-		else {
-			if (keyState[Enter])
-				gameState = TRANSITIONSCREEN;
-		}
 		timer = 0.0f;
+		startButton(TRANSITIONSCREEN);
+
 		break;
 	case MAINGAME:
 		timer += deltaTime;
@@ -195,7 +202,6 @@ void InputManager::do_movement(float deltaTime) {
 		if (paused || startCount || exploding) {
 			if (exploding) {
 				timeExploding = timer - explodingBuffer;
-				//std::cout << timeExploding << std::endl;
 			}
 			else {
 				if (glfwJoystickPresent(GLFW_JOYSTICK_1)) {
@@ -455,51 +461,31 @@ void InputManager::do_movement(float deltaTime) {
 		break;
 	case TRANSITIONSCREEN:
 		gameState = MAINGAME;
-
 		stutter = 0.0f;
 		timer = 0.0f;
 		break;
 	case STARTMENU:
-
-		if (glfwJoystickPresent(GLFW_JOYSTICK_1)) {
-			axes = glfwGetJoystickAxes(GLFW_JOYSTICK_1, &axesCount);
-			buttons = glfwGetJoystickButtons(GLFW_JOYSTICK_1, &buttonCount);
-			if (GLFW_PRESS == buttons[7])
-				gameState = MAINGAME;
-		}
-		else {
-			if (keyState[Enter])
-				gameState = MAINGAME;
-		}
+		startButton(MAINGAME);
 		stutter = 0.0f;
 		timer = 0.0f;
 		break;
 	case GAMEOVER:
 		stutter = 0.0f;
 		timer = 0.0f;
-		if (glfwJoystickPresent(GLFW_JOYSTICK_1)) {
-			axes = glfwGetJoystickAxes(GLFW_JOYSTICK_1, &axesCount);
-			buttons = glfwGetJoystickButtons(GLFW_JOYSTICK_1, &buttonCount);
-			if (GLFW_PRESS == buttons[7])
-				gameState = SPLASHSCREEN;
-		}
-		else {
-			if (keyState[Enter])
-				gameState = SPLASHSCREEN;
-		}
+		startButton(SPLASHSCREEN);
 		break;
 	case WINNER:
 		stutter = 0.0f;
 		timer = 0.0f;
-		if (keyState[InputCodes::Enter])
-			gameState = CREDITS;
+		startButton(CREDITS);
 		break;
 	case CREDITS:
 		stutter = 0.0f;
 		timer = 0.0f;
-		if (keyState[InputCodes::kEscape])
-			exit(0);
+		startButton(EXIT);
 		break;
+	case EXIT:
+		exit(0);
 	}
 
 }
